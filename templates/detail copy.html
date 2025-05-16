@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ books.title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: Arial, sans-serif; 
+            background: #004aad;
+        }
+
+        .topbar {
+            padding: 0 20px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-left">
+            <a href="/">
+                <img src="/static/logooo.png" alt="Logo" style="width: 150px;">
+            </a>
+        </div>
+    </header>
+    <div class="details">
+        <p class="books-title">{{ books.title }}</p>
+        <div class="card-image">
+            {% if books.formats["image/jpeg"] %}
+                <img src="{{ books.formats['image/jpeg'] }}" alt="Cover {{ books.title }}" class="card-img">
+            {% else %}
+                <img src="/static/no-cover.jpg" alt="No Cover" class="card-img">
+            {% endif %}
+        </div>
+        {% for author in books.authors %}
+            <div class="book-author">
+                <p>{{ author.name }}</p>
+                <p>{{author.birth_year}} - {{author.death_year}}</p>
+            </div>
+        {% endfor %}
+        <p class="book-desc">{{ books.summaries | join(', ') }}</p>
+        <a class="button" href="/baca/{{ books.id }}">Baca Sekarang</a>
+        <a class="button" href="{{ download }}">Unduh Buku</a>
+    </div>
+</body>
+</html>

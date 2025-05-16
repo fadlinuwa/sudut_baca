@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudut Baca</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-left">
+            <a href="/">
+                <img src="../static/logoo.png" alt="Logo" style="width: 150px;">
+            </a>
+        </div>
+        <div class="topbar-center">
+            <form method="get" action="/">
+                <input type="text" name="search" placeholder="Cari buku..." value="" style="padding: 10px 60px;border-radius: 10px;text-align: center">
+                <!-- <button type="submit" style="padding: 10px; border-radius: 10px;">Cari</button> -->
+            </form>
+        </div>
+        <div class="topbar-right">
+            <a href="https://github.com/Waaannns/giveaway_bot" target="_blank">
+                <img src="../static/github.png" style="width: 120px; margin-left: 30px;">
+            </a>
+        </div>
+    </header>
+    <div class="slide-container swiper">
+        <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+                {% for book in books %}
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            {% if book.formats["image/jpeg"] %}
+                                <img src="{{ book.formats['image/jpeg'] }}" alt="Cover {{ book.title }}" class="card-img">
+                            {% else %}
+                                <img src="/static/no-cover.jpg" alt="No Cover" class="card-img">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="book-title">{{ book.title }}</h2>
+                        <p class="book-author">
+                            {% for author in book.authors %}
+                                {{ author.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p class="book-desc">{{ book.summaries | join(', ') }}</p>
+                        <a class="button" href="/baca/{{ book.id }}" target="_blank">Baca Sekarang</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+        {% if page > 1 %}
+        <a href="/?page={{ page - 1 }}{% if search %}&search={{ search }}{% endif %}">Previous</a>
+        {% endif %}
+
+        {% for p in range(1, total_pages + 1) %}
+        {% if p == page %}
+            <span class="current">{{ p }}</span>
+        {% elif p <= 5 or (p > page-2 and p < page+2) or p > total_pages-2 %}
+            <a href="/?page={{ p }}{% if search %}&search={{ search }}{% endif %}">{{ p }}</a>
+        {% elif p == 6 and page > 5 %}
+            ...
+        {% endif %}
+        {% endfor %}
+
+        {% if page < total_pages %}
+        <a href="/?page={{ page + 1 }}{% if search %}&search={{ search }}{% endif %}">Next</a>
+        {% endif %}
+    </div>
+</body>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- JavaScript -->
+<script src="../static/script.js"></script>
+</html>
