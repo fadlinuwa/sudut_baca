@@ -1,6 +1,6 @@
 Hasil testing pada web :
 
-[Tanggal 16/05/2025]
+[Tanggal 23/05/2025]
 
 1. Fitur Searching berfungsi dengan baik
 2. Website bisa di mobile & dekstop
