@@ -1,1 +1,1 @@
-untuk tambahkan halaman About, FAQ dan Kontak
+tambahkan halaman About, FAQ dan Kontak
