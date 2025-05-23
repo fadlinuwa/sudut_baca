@@ -1,7 +1,12 @@
-1. Fitur Searching berfungsi dengan baik
-2. Website bisa di mobile & dekstop
-3. Fitur Download & Read buku berfungsi dengan baik
-4. Error 404 berfungsi dengan baik 
-5. Navigasi antar halaman berjalan lancar dan mengarah ke halaman yang sesuai
-6. Desain UI konsisten di seluruh halaman, baik warna, font, maupun tata letak
-7. Navigasi antar halaman berjalan lancar dan mengarah ke halaman yang sesuai
+Hasil testing pada web :
+
+[Tanggal 23/05/2025]
+
+Fitur Searching berfungsi dengan baik
+Website bisa di mobile & dekstop
+Fitur Download & Read buku berfungsi dengan baik
+Error 404 berfungsi dengan baik
+untuk bagian lihat buku berhasil menampilkan detail buku
+bagian button baca buku sudah berhasil menampilkan isi buku
+button unduh buku sudah berhasil mendownload buku dalam bentuk zip
+untuk tampilan UI sangat menarik dan simple
